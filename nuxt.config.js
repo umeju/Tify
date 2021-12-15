@@ -1,62 +1,74 @@
-import * as siteConfig from './content/site/info.json'
+import colors from 'vuetify/es5/util/colors'
 
 export default {
-  // Target (https://go.nuxtjs.dev/config-target)
+  // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  // Environment variables: https://nuxtjs.org/api/configuration-env/
-  env: {
-    url:
-      process.env.NODE_ENV === 'production'
-        ? process.env.URL || 'http://createADotEnvFileAndSetURL'
-        : 'http://localhost:3000',
-    lang: 'en-US',
-  },
-
-  // Global page headers (https://go.nuxtjs.dev/config-head)
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: siteConfig.sitename || process.env.npm_package_name || '',
+    titleTemplate: '%s - tify',
+    title: 'tify',
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content:
-          siteConfig.sitedescription ||
-          process.env.npm_package_description ||
-          '',
-      },
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' }
     ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ]
   },
 
-  generate: {
-    fallback: true,
-    exclude: [
-      /^\/admin/, // path starts with /admin
-    ],
-  },
+  // Global CSS: https://go.nuxtjs.dev/config-css
+  css: [
+  ],
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['@/assets/css/main.css'],
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  plugins: [
+  ],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
+  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
+    // https://go.nuxtjs.dev/vuetify
+    '@nuxtjs/vuetify'
   ],
+  publicRuntimeConfig: {
+    axios: {
+      // baseURL: 'https://api.nuxtjs.dev'
+      baseURL: 'https://consultamenu.com/public'
+    }
+  },
+  // Modules: https://go.nuxtjs.dev/config-modules
+  modules: ['@nuxtjs/axios'],
 
-  // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/content
-    '@nuxt/content',
-  ],
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    theme: {
+      dark: true,
+      themes: {
+        dark: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        }
+      }
+    }
+  },
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+  }
 }

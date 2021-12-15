@@ -1,83 +1,78 @@
 <template>
-  <div>
-    <Hero
-      :heading="page.heading"
-      :subheading="page.subheading"
-      :image="page.image"
-    />
-    <div
-      class="px-8 mx-auto mt-12 prose sm:px-6 md:px-4 lg:px-2 xl:px-0 xl:prose-xl lg:prose-lg md:prose-md"
-    >
-      <h3>
-        {{ page.mainpitch.title }}
-      </h3>
-      <p>
-        {{ page.mainpitch.description }}
-      </p>
-      <h2>
-        {{ page.title }}
-      </h2>
-      <p>
-        {{ page.description }}
-      </p>
-      <div class="lg:grid lg:grid-cols-2 lg:gap-8">
-        <div
-          v-for="(blurb, index) in page.intro.blurbs"
-          :key="index"
-          class="flex flex-col items-center px-6 border rounded-lg shadow justify-top"
-        >
-          <img class="h-32" :src="blurb.image" />
-          <p class="mt-2 text-justify">{{ blurb.text }}.</p>
-        </div>
-      </div>
-      <p class="text-center">
-        <nuxt-link
-          to="/products"
-          class="inline-flex items-center px-6 py-3 text-base font-medium leading-6 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md text-kaldi hover:text-orange-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50"
-        >
-          See all products
-        </nuxt-link>
-      </p>
-      <h2>Latest stories</h2>
-      <div class="lg:grid lg:grid-cols-2 lg:gap-8">
-        <div
-          v-for="(post, index) in posts"
-          :key="index"
-          class="px-6 border rounded-lg shadow"
-        >
-          <h3>
-            <nuxt-link :to="`/blog/${post.slug}`">{{ post.title }}</nuxt-link>
-          </h3>
+  <v-row justify="center" align="center">
+    <v-col cols="12" sm="8" md="6">
+      <v-card class="logo py-4 d-flex justify-center">
+        <NuxtLogo />
+        <VuetifyLogo />
+      </v-card>
+      <v-card>
+        <v-card-title class="headline">
+          Welcome to the Vuetify + Nuxt.js template
+        </v-card-title>
+        <v-card-text>
+          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
           <p>
-            {{ post.description }}
+            For more information on Vuetify, check out the <a
+              href="https://vuetifyjs.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              documentation
+            </a>.
           </p>
           <p>
-            <nuxt-link :to="`/blog/${post.slug}`">Read more</nuxt-link>
+            If you have questions, please join the official <a
+              href="https://chat.vuetifyjs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="chat"
+            >
+              discord
+            </a>.
           </p>
-        </div>
-      </div>
-      <p class="text-center">
-        <nuxt-link
-          to="/blog"
-          class="inline-flex items-center px-6 py-3 text-base font-medium leading-6 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md text-kaldi hover:text-orange-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50"
-        >
-          Read more
-        </nuxt-link>
-      </p>
-    </div>
-  </div>
+          <p>
+            Find a bug? Report it on the github <a
+              href="https://github.com/vuetifyjs/vuetify/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="contribute"
+            >
+              issue board
+            </a>.
+          </p>
+          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
+          <div class="text-xs-right">
+            <em><small>&mdash; John Leider</small></em>
+          </div>
+          <hr class="my-3">
+          <a
+            href="https://nuxtjs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Nuxt Documentation
+          </a>
+          <br>
+          <a
+            href="https://github.com/nuxt/nuxt.js"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Nuxt GitHub
+          </a>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="primary"
+            nuxt
+            to="/inspire"
+          >
+            Continue
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <Items />
+    </v-col>
+  </v-row>
 </template>
-
-<script>
-export default {
-  async asyncData({ $content }) {
-    const page = await $content('index').fetch()
-    const posts = await $content('blog').fetch()
-
-    return {
-      page,
-      posts,
-    }
-  },
-}
-</script>
