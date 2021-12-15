@@ -5,6 +5,7 @@
       background-color="orange lighten-3"
       color="orange"
       size="16"
+      class="stars"
     />
   </div>
 </template>
@@ -15,3 +16,8 @@ export default {
   })
 }
 </script>
+<style>
+.stars{
+  margin: 0 0 0 -8px;
+}
+</style>

@@ -2,27 +2,32 @@
   <div>
     <h2
       class="my-3"
-    >{{ prods.sites.operatore.denominazione }} - {{ prods.sites.operatore.citta }}
+    >
+      {{ prods.sites.operatore.denominazione }} - {{ prods.sites.operatore.citta }}
     </h2>
     <!-- {{ prods.sites.operatore.id }} - {{ prods.sites.operatore.referente }} -->
     <!-- {{ prods.sites.categorie }} -->
     <!-- <Carousel /> -->
     <div class="flexi">
       <!-- <transition-group name="list" tag="p"> -->
-
-      <v-expansion-panels>
+      <v-expansion-panels
+        v-model="panel"
+        multiple
+        focusable
+      >
         <v-expansion-panel
           v-for="(categoria, id) in prods.sites.categorie"
           :key="id"
-          class="blue-grey darken-4"
+          class="blue-grey darken-4 mt-1"
         >
-          <v-expansion-panel-header>
+          <v-expansion-panel-header
+            class="mt-0 p-0 womargin"
+          >
             <v-img
-              class="this mx-4"
-              lazy-src="https://picsum.photos/id/11/10/6"
+              class="cat-image mx-4"
               max-height="100"
               max-width="100"
-              src="https://picsum.photos/id/11/10/6"
+              src="https://www.stepbystep.com/wp-content/uploads/2012/07/Antipasti-Platter.jpg"
             />
             {{ categoria.nome }}
           </v-expansion-panel-header>
@@ -30,7 +35,7 @@
             <div
               v-for="(prodotto, k) in categoria.prodotti_ingredienti_consigliati"
               :key="k"
-              class="px-6"
+              class="px-0"
             >
               <!-- <v-lazy
                 v-model="isActive"
@@ -41,13 +46,13 @@
                 transition="fade-transition"
               > -->
               <v-img
-                class="this my-0"
+                class="cat-image mt-6"
                 lazy-src="https://picsum.photos/id/11/10/6"
                 max-height="160"
                 max-width="280"
                 :src="prodotto.url_img1"
               />
-              <div>
+              <div class="wrap-desc">
                 <h6
                   class="mt-2"
                 >
@@ -58,7 +63,7 @@
                   rounded
                   color="primary"
                   dark
-                  class="butt"
+                  class="plus"
                 >
                   +
                 </v-btn>
@@ -104,7 +109,8 @@ export default {
       'mdi-twitter',
       'mdi-linkedin',
       'mdi-instagram'
-    ]
+    ],
+    panel: []
   })
 }
 </script>
@@ -119,18 +125,25 @@ export default {
 }
 .flexi div {
   flex-direction: row;
-  /* margin: 10px; */
-  content: "";
-  margin: 0px;
 }
 .descr {
   min-height: 50px;
 }
-.butt {
-  height: 36px;
-  min-width: 64px;
-  padding: 0 16px;
-  top: -30px;
-  left: 215px;
+.plus {
+  margin: -85px 0 0 215px;
+}
+.womargin {
+  padding: 10px !important;
+}
+.wrap-desc {
+  margin: 0 0 -22px 0;
+  max-width: 200px;
+}
+.text-caption {
+  max-width: 277px;
+  text-align: justify;
+}
+.cat-image {
+  border-radius: 10px;
 }
 </style>
